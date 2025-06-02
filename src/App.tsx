@@ -1,18 +1,9 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import Header from "./CommonComponents/Header/Header";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div className="flex min-h-screen items-center justify-center bg-gray-100">
-        <h1 className="text-4xl font-bold text-blue-600">
-          Tailwind + Vite = ✅
-        </h1>
-      </div>
+      <Header />
     </>
   );
 }
