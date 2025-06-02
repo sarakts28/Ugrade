@@ -1,3 +1,3 @@
 import Header from "./Header/Header";
-
-export { Header };
+import InfoCard from "./InfoCard/InfoCard";
+export { Header, InfoCard };
