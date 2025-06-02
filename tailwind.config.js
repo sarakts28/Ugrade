@@ -4,8 +4,23 @@ module.exports = {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: {
-    extend: {},
+ theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Sora', 'sans-serif'], 
+      },
+      colors: {
+        primary: {
+         NavyBlue: '#0A2628',
+        },
+        secondary: {
+        
+        },
+        // Add your custom colors here
+        brand: {
+        },
+      },
+    },
   },
   plugins: [],
 }
