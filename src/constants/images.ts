@@ -18,6 +18,7 @@ import InstructorImage5 from "../assets/instructorImage5.jpg";
 import InstructorImage6 from "../assets/instructorImage6.jpg";
 import InstructorImage7 from "../assets/instructorImage7.jpg";
 import InstructorImage8 from "../assets/instructorImage8.jpg";
+import ConatctUsImage from "../assets/contactUsImage.png";
 
 export const Images = {
   Logo: Logo,
@@ -39,5 +40,6 @@ export const Images = {
   InstructorImage6: InstructorImage6,
   InstructorImage7: InstructorImage7,
   InstructorImage8: InstructorImage8,
+  ConatctUsImage: ConatctUsImage,
   // Add other images here as needed
 };
