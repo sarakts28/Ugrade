@@ -12,6 +12,7 @@ module.exports = {
       colors: {
         primary: {
          NavyBlue: '#0A2628',
+         darkGreen: "#113025"
         },
         secondary: {
         
