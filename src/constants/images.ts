@@ -19,7 +19,7 @@ import InstructorImage6 from "../assets/instructorImage6.jpg";
 import InstructorImage7 from "../assets/instructorImage7.jpg";
 import InstructorImage8 from "../assets/instructorImage8.jpg";
 import ConatctUsImage from "../assets/contactUsImage.png";
-
+import FooterLogo from "../assets/svg/footerLogo.svg";
 export const Images = {
   Logo: Logo,
   AboutUsBannerImage: AboutUsBannerImage,
@@ -32,6 +32,7 @@ export const Images = {
   OurVision: OurVision,
   Globe: Globe,
   VideoCall: VideoCall,
+  FooterLogo: FooterLogo,
   InstructorImage1: InstructorImage1,
   InstructorImage2: InstructorImage2,
   InstructorImage3: InstructorImage3,

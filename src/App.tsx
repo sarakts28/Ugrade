@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PublicLayout from "./utilities/publicRoutes";
-import { AboutScreen, HomeScreen } from "./screens";
+import { AboutScreen, ConatctScreen, HomeScreen } from "./screens";
 
 function App() {
   const router = createBrowserRouter([
@@ -15,6 +15,10 @@ function App() {
         {
           path: "/about",
           element: <AboutScreen />,
+        },
+        {
+          path: "/contact",
+          element: <ConatctScreen />,
         },
       ],
     },

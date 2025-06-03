@@ -1,147 +1,125 @@
-import { Link } from "react-router-dom";
-
+import { Images } from "../../constants/images";
+import { TiSocialTwitter } from "react-icons/ti";
+import { FaFacebookF, FaYoutube } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const companyArray = [
+    { name: "About Us", link: "/about" },
+    { name: "Contact Us", link: "/contact" },
+    { name: "Terms of Use", link: "#" },
+    { name: "Privacy Policy", link: "#" },
+  ];
+  const programsArray = [
+    { name: "Fellowship", link: "#" },
+    { name: "Self-Pieced", link: "#" },
+  ];
+  const resourcesArray = [
+    { name: "Blogs", link: "#" },
+    { name: "Apply as Mentor", link: "#" },
+  ];
   return (
     <>
-      {/* Desktop Layout (md and above) */}
-      <div className="hidden md:block">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="grid grid-cols-12 gap-8">
+      <div className="md:block">
+        <div className="py-12">
+          <div className="flex flex-col md:flex-row px-8 gap-8 w-full">
             {/* Left Column - Brand Info */}
-            <div className="col-span-5">
-              <div className="flex items-center mb-4">
-                <div className="h-10 w-10 bg-blue-600 rounded-md mr-3"></div>
-                <span className="text-2xl font-bold">Zgrad</span>
+            <div className="flex flex-col gap-1 w-full md:w-[30%] items-start">
+              <div
+                className="flex items-center mb-4"
+                onClick={() => navigate("/")}
+              >
+                <img src={Images.FooterLogo} alt="Jgrad Logo" />
               </div>
-              <div className="space-y-1 text-lg">
+              <div className="space-y-1 text-base font-sans text-white">
                 <p>Learn by doing.</p>
                 <p>Grow with mentors.</p>
                 <p>Land your dream job.</p>
               </div>
+              <div className="mb-2 md:mb-0 mt-3 flex items-center gap-2">
+                <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                  <FaFacebookF fontSize={16} />
+                </div>
+                <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                  <TiSocialTwitter fontSize={16} />
+                </div>
+
+                <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                  <FaInstagram fontSize={16} />
+                </div>
+                <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                  <FaYoutube fontSize={16} />
+                </div>
+              </div>
             </div>
 
             {/* Middle Columns - Links */}
-            <div className="col-span-7 grid grid-cols-3 gap-8">
+            <div className="flex flex-col md:flex-row  w-full md:w-[70%] gap-8 md:gap-28">
               <div>
-                <h3 className="text-lg font-semibold mb-4">Company</h3>
-                <ul className="space-y-2">
-                  {[
-                    "About Us",
-                    "Contact Us",
-                    "Terms of Use",
-                    "Privacy Policy",
-                  ].map((item) => (
-                    <li key={item}>
-                      <Link to="#" className="hover:text-blue-600">
-                        {item}
-                      </Link>
+                <h3 className="text-lg text-white font-semibold font-sans mb-4">
+                  Company
+                </h3>
+                <ul className="space-y-4 text-white  font-sans">
+                  {companyArray.map((item) => (
+                    <li key={item.name}>
+                      <div
+                        className="hover:text-primary-NavyBlue"
+                        onClick={() => navigate(item.link)}
+                      >
+                        {item.name}
+                      </div>
                     </li>
                   ))}
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-4">Programs</h3>
-                <ul className="space-y-2">
-                  {["Fellowship", "Self-Pieced"].map((item) => (
-                    <li key={item}>
-                      <Link to="#" className="hover:text-blue-600">
-                        {item}
-                      </Link>
+                <h3 className="text-lg font-semibold mb-4  font-sans text-white">
+                  Programs
+                </h3>
+                <ul className="space-y-4 text-white  font-sans">
+                  {programsArray.map((item) => (
+                    <li key={item.name}>
+                      <div
+                        onClick={() => navigate(item.link)}
+                        className="hover:text-primary-NavyBlue"
+                      >
+                        {item.name}
+                      </div>
                     </li>
                   ))}
                 </ul>
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-4">
+                <h3 className="text-lg font-semibold mb-4 text-white  font-sans">
                   Resources / Participate
                 </h3>
-                <ul className="space-y-2">
-                  {["Blogs", "Apply as Mentor"].map((item) => (
-                    <li key={item}>
-                      <Link to="#" className="hover:text-blue-600">
-                        {item}
-                      </Link>
+                <ul className="space-y-4 text-white  font-sans">
+                  {resourcesArray.map((item) => (
+                    <li key={item.name}>
+                      <div
+                        onClick={() => navigate(item.link)}
+                        className="hover:text-primary-NavyBlue"
+                      >
+                        {item.name}
+                      </div>
                     </li>
                   ))}
                 </ul>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Layout */}
-      <div className="md:hidden">
-        <div className="px-6 py-8">
-          {/* Brand Info - Centered */}
-          <div className="flex flex-col items-center text-center mb-8">
-            <div className="flex items-center mb-3">
-              <div className="h-8 w-8 bg-blue-600 rounded-md mr-2"></div>
-              <span className="text-xl font-bold">Jgrad</span>
-            </div>
-            <div className="space-y-1">
-              <p>Learn by doing.</p>
-              <p>Grow with mentors.</p>
-              <p>Land your dream job.</p>
-            </div>
-          </div>
-
-          {/* Links - Single Column */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="font-semibold mb-3 text-center">Company</h3>
-              <ul className="space-y-2 text-center">
-                {[
-                  "About Us",
-                  "Contact Us",
-                  "Terms of Use",
-                  "Privacy Policy",
-                ].map((item) => (
-                  <li key={item}>
-                    <Link to="#" className="hover:text-blue-600">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-3 text-center">Programs</h3>
-              <ul className="space-y-2 text-center">
-                {["Fellowship", "Self-Pieced"].map((item) => (
-                  <li key={item}>
-                    <Link to="#" className="hover:text-blue-600">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-3 text-center">
-                Resources / Participate
-              </h3>
-              <ul className="space-y-2 text-center">
-                {["Blogs", "Apply as Mentor"].map((item) => (
-                  <li key={item}>
-                    <Link to="#" className="hover:text-blue-600">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
       </div>
 
       {/* Copyright - Common to both */}
-      <div className="border-t border-gray-200 py-6 text-center text-sm">
-        © {new Date().getFullYear()} Pixelify. All rights reserved
+      <div className="px-6">
+        <div className="border-t-[4px] border-[#918D8D6E] py-6 text-center text-white text-sm font-sans">
+          © {new Date().getFullYear()} Pixelify. All rights reserved
+        </div>
       </div>
     </>
   );
