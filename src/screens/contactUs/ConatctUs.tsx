@@ -1,7 +1,7 @@
 import { Images } from "../../constants/images";
 import { GrLinkNext } from "react-icons/gr";
 import Form from "./components/Form";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const ConatctUs = () => {
   const [data, setData] = useState({
     name: "",
