@@ -19,7 +19,7 @@ const CareerSection = () => {
       title: "Mentors who have been there",
       description:
         "Get certified in the skills that employers are looking forGet guidance from professionals who have done the work and know what it takes",
-      isSelected: false,
+      isSelected: true,
       icon: Images.VideoCall,
       selectedIcon: Images.VideoCallWhite,
       className: "w-[318px] lg:w-[518px] h-[350px]",

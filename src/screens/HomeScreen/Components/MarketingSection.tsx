@@ -22,7 +22,7 @@ const MarketingSection = () => {
     },
   ];
   return (
-    <div className="w-full flex flex-col items-center  bg-brand-grayNatural200 gap-4 p-4 h-auto">
+    <div className="w-full flex flex-col items-center  bg-brand-grayNatural200 py-8 md:py-16 px-4 md:px-8 gap-6">
       <h1 className="font-sans font-semibold text-[32px] md:text-5xl text-primary-darkGreen">
         Self-Placed Programs
       </h1>
