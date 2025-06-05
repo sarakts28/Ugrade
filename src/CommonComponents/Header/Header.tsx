@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Images } from "../../constants/images";
 import {
@@ -15,6 +15,20 @@ const Header = () => {
   const [isLearnOpen, setIsLearnOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Prevent body scrolling when drawer is open
+    if (isDrawerOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    // Cleanup function
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isDrawerOpen]);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -33,9 +47,10 @@ const Header = () => {
           <img
             src={Images.Logo}
             alt="Logo"
-            className="h-8 w-auto"
+            className="h-8 w-auto cursor-pointer"
             onClick={() => {
               navigate("/");
+              setIsDrawerOpen(false);
             }}
           />
 
@@ -60,14 +75,16 @@ const Header = () => {
               {isLearnOpen && (
                 <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
                   <a
-                    href="#"
-                    className="block px-4 py-2 text-primary-NavyBlue hover:bg-gray-100"
+                    onClick={() => {
+                      navigate("/programs");
+                    }}
+                    className="block px-4 py-2 text-primary-NavyBlue hover:bg-gray-100 cursor-pointer"
                   >
-                    Courses
+                    Programs
                   </a>
                   <a
                     href="#"
-                    className="block px-4 py-2 text-primary-NavyBlue hover:bg-gray-100"
+                    className="block px-4 py-2 text-primary-NavyBlue hover:bg-gray-100 cursor-pointer"
                   >
                     Tutorials
                   </a>
@@ -108,71 +125,80 @@ const Header = () => {
       {/* Mobile Drawer - Full height with fixed button at bottom */}
       {isDrawerOpen && (
         <div className="md:hidden fixed inset-0 z-50 bg-white mt-16 overflow-y-auto">
-          <div className="container mx-auto px-4 py-2 flex flex-col min-h-[calc(100vh-4rem)]">
-            {/* Navigation items with scrollable content */}
-            <div className="flex-grow gap-6 flex flex-col">
-              <div>
-                <button
-                  onClick={toggleLearnMenu}
-                  className="w-full text-left text-primary-NavyBlue hover:text-gray-900 py-4 flex items-center justify-between"
-                >
-                  Learn
-                  <span>
-                    {isLearnOpen ? (
-                      <RiArrowDropUpLine style={{ fontSize: "32px" }} />
-                    ) : (
-                      <RiArrowDropDownLine style={{ fontSize: "32px" }} />
-                    )}
-                  </span>
-                </button>
+          {/* Overlay that covers the entire screen */}
+          <div className="absolute inset-0 bg-white">
+            <div className="container mx-auto px-4 py-2 flex flex-col h-full">
+              {/* Navigation items with scrollable content */}
+              <div className="flex-grow overflow-y-auto gap-6 flex flex-col">
+                <div>
+                  <button
+                    onClick={toggleLearnMenu}
+                    className="w-full text-left text-primary-NavyBlue hover:text-gray-900 py-4 flex items-center justify-between"
+                  >
+                    Learn
+                    <span>
+                      {isLearnOpen ? (
+                        <RiArrowDropUpLine style={{ fontSize: "32px" }} />
+                      ) : (
+                        <RiArrowDropDownLine style={{ fontSize: "32px" }} />
+                      )}
+                    </span>
+                  </button>
 
-                {/* Mobile Dropdown */}
-                {isLearnOpen && (
-                  <div className="pl-4 py-2 space-y-2 bg-gray-50">
-                    <a
-                      href="#"
-                      className="block text-primary-NavyBlue hover:text-gray-900 py-3 px-2"
-                    >
-                      Courses
-                    </a>
-                    <a
-                      href="#"
-                      className="block text-primary-NavyBlue hover:text-gray-900 py-3 px-2"
-                    >
-                      Tutorials
-                    </a>
-                  </div>
-                )}
+                  {/* Mobile Dropdown */}
+                  {isLearnOpen && (
+                    <div className="pl-4 py-2 space-y-2 bg-gray-50">
+                      <a
+                        onClick={() => {
+                          navigate("/programs");
+                          toggleDrawer();
+                        }}
+                        className="block text-primary-NavyBlue hover:text-gray-900 py-3 px-2 cursor-pointer"
+                      >
+                        Programs
+                      </a>
+                      <a
+                        href="#"
+                        className="block text-primary-NavyBlue hover:text-gray-900 py-3 px-2 cursor-pointer"
+                      >
+                        Tutorials
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                <a
+                  onClick={() => {
+                    navigate("/about");
+                    toggleDrawer();
+                  }}
+                  className="text-primary-NavyBlue cursor-pointer hover:text-gray-900 py-4 pr-2 flex items-center justify-between"
+                >
+                  About
+                  <HiMiniArrowUpRight style={{ fontSize: "24px" }} />
+                </a>
+                <a className="text-primary-NavyBlue cursor-pointer hover:text-gray-900 py-4 pr-2 flex items-center justify-between">
+                  Blogs
+                  <HiMiniArrowUpRight style={{ fontSize: "24px" }} />
+                </a>
               </div>
 
-              <a
-                onClick={() => navigate("/about")}
-                className="text-primary-NavyBlue cursor-pointer hover:text-gray-900 py-4 pr-2 flex items-center justify-between"
-              >
-                About
-                <HiMiniArrowUpRight style={{ fontSize: "24px" }} />
-              </a>
-              <a className="text-primary-NavyBlue cursor-pointer hover:text-gray-900 py-4 pr-2 flex items-center justify-between">
-                Blogs
-                <HiMiniArrowUpRight style={{ fontSize: "24px" }} />
-              </a>
-            </div>
-
-            {/* Fixed button at bottom */}
-            <div className="sticky bottom-6">
-              <CustomButton
-                label={
-                  <div className="flex justify-center items-center gap-2">
-                    <RiGraduationCapLine />
-                    Apply as Instructor/Mentor
-                  </div>
-                }
-                background="#113025"
-                labelClassName="text-base font-sans"
-                onClick={() => alert("Button Clicked!")}
-                className="w-full text-white h-12 rounded-md border border-r-8"
-                borderWidth="1"
-              />
+              {/* Fixed button at bottom */}
+              <div className="sticky bottom-0 bg-white py-4">
+                <CustomButton
+                  label={
+                    <div className="flex justify-center items-center gap-2">
+                      <RiGraduationCapLine />
+                      Apply as Instructor/Mentor
+                    </div>
+                  }
+                  background="#113025"
+                  labelClassName="text-base font-sans"
+                  onClick={() => alert("Button Clicked!")}
+                  className="w-full text-white h-12 rounded-md border border-r-8"
+                  borderWidth="1"
+                />
+              </div>
             </div>
           </div>
         </div>
