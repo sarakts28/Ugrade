@@ -97,7 +97,7 @@ const Program = () => {
             {/* ------------------------- */}
             <div className="w-full shrink-0 md:w-[50%]">
               <img
-                src={Images.ProgramImage}
+                src={Images.Program1}
                 alt="Program Banner Image"
                 className="w-full h-auto object-contain  "
               />
