@@ -2,45 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer utilities {
+  /* Scrollbar utilities */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* Cursor utilities */
+  .cursor-grab {
+    cursor: grab;
+  }
+  .cursor-grabbing {
+    cursor: grabbing;
+  }
+}
 
+/* Base HTML styles */
 html,
 body,
 #root {
-    height: 100%;
-    width: 100%;
-}
-
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
-}
-
-.cursor-grab {
-    cursor: grab;
-}
-
-.cursor-grabbing {
-    cursor: grabbing;
-}
-
-/* For Firefox */
-.scrollbar-hide {
-  scrollbar-width: none;
-}
-
-/* For IE and Edge */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-}
-
-/* For Chrome, Safari and Opera */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+  height: 100%;
+  width: 100%;
 }

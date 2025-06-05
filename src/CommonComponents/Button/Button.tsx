@@ -60,7 +60,7 @@ const Button: React.FC<ButtonProps> = ({
       className={`
         flex items-center justify-center gap-2
         rounded transition-all duration-200
-     
+        h-12
         ${disabled ? "opacity-50 cursor-not-allowed" : "hover:opacity-80"}
         ${className}
       `}

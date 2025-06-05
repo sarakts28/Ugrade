@@ -45,7 +45,8 @@ const AboutUs = () => {
         {/* ------ Our Vision ------ */}
         <OurVision />
         {/* ------ Our Instructors ------ */}
-        <OurInstructors />
+        <OurInstructors heading="Our Instructors" />
+        <OurInstructors heading="Our Mentors" />
       </div>
     </div>
   );
