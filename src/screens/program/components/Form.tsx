@@ -21,7 +21,6 @@ const Form = (props: FormProps) => {
     email: "",
     phone: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handlePopUpClose = () => setOpenPopUp(false);
 
@@ -45,7 +44,6 @@ const Form = (props: FormProps) => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    setIsSubmitting(true);
     try {
       const formRef = ref(database, "formSubmissions");
       await push(formRef, {
@@ -57,8 +55,6 @@ const Form = (props: FormProps) => {
     } catch (error) {
       console.error("Firebase submission error:", error);
       alert("Submission failed. Please try again.");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 

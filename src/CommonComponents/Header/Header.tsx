@@ -77,6 +77,7 @@ const Header = () => {
                   <a
                     onClick={() => {
                       navigate("/programs");
+                      setIsLearnOpen(!isLearnOpen);
                     }}
                     className="block px-4 py-2 text-primary-NavyBlue hover:bg-gray-100 cursor-pointer"
                   >
