@@ -15,6 +15,7 @@ interface ButtonProps {
   className?: string;
   iconClassName?: string;
   labelClassName?: string;
+  type?: "submit" | "reset" | "button";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -31,6 +32,7 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   iconClassName = "",
   labelClassName = "",
+  type = "button",
 }) => {
   const handleStartIconClick = (e: MouseEvent<HTMLSpanElement>) => {
     e.stopPropagation();
@@ -55,6 +57,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      type={type}
       disabled={disabled}
       onClick={onClick}
       className={`

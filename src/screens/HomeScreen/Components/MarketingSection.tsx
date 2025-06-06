@@ -20,6 +20,14 @@ const MarketingSection = () => {
       ctaText: "Explore Programs",
       imageText: "Self-Placed",
     },
+    {
+      backgroundImage: "",
+      title: "",
+      duration: "",
+      language: "",
+      ctaText: "",
+      imageText: "",
+    },
   ];
   return (
     <div className="w-full flex flex-col items-center  bg-brand-grayNatural200 py-8 md:py-16 px-4 md:px-8 gap-6">
@@ -32,7 +40,7 @@ const MarketingSection = () => {
         Learn at your speed, build real skills, and stay in control of your
         progress — just pure flexibility.
       </p>
-      <div className="hidden w-full md:flex md:flex-row items-center justify-center gap-4 md:gap-8">
+      <div className="hidden w-full lg:flex lg:flex-row items-center justify-center gap-4 lg:gap-8">
         {marketingCardArray.map((card, index) => (
           <MarketingCard
             key={index}
@@ -45,7 +53,7 @@ const MarketingSection = () => {
           />
         ))}
       </div>
-      <div className="w-full md:hidden">
+      <div className="w-full lg:hidden">
         <ScrollableRow gap="lg" className="p-4 bg-gray-50">
           {marketingCardArray.map((card, index) => (
             <MarketingCard

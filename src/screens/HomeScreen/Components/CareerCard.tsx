@@ -1,10 +1,10 @@
-import React from "react";
-import { FiBookmark } from "react-icons/fi"; // Example icon (install react-icons)
+import React, { useState } from "react";
+import { FiBookmark } from "react-icons/fi";
 
 interface CareerCardProps {
   title: string;
   description: string;
-  isSelected?: boolean;
+  hoverIcon?: React.ReactNode;
   className?: string;
   width?: string;
   height?: string;
@@ -16,40 +16,52 @@ interface CareerCardProps {
 const CareerCard: React.FC<CareerCardProps> = ({
   title = "Real-World Skill Tracks",
   description = "Learn what the industry actually uses - no fluff, just the skills that matter",
-  isSelected = false,
+  hoverIcon,
   className = "",
-  number = "01", // Default number
-  icon = <FiBookmark className="text-lg" />, // Default icon
+  number = "01",
+  icon = <FiBookmark className="text-lg" />,
   onClick,
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
       className={`
-         ${className}
+        ${className}
         rounded-lg p-4 cursor-pointer
-        border-2 ${
-          isSelected
-            ? "border-darkGreen bg-darkGreen"
-            : "border-gray-200 bg-white"
-        }
-        flex flex-col justify-between 
-        ${isSelected ? "bg-primary-secondaryGreen" : "bg-white"}
+        border-2 border-gray-200
+        flex flex-col justify-between
+        transition-all duration-200 ease-in-out
+        hover:bg-primary-NavyBlue hover:border-primary-NavyBlue
+        bg-white
+        group
       `}
       onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Top number and icon section */}
       <div className="flex items-center justify-between w-full">
         <div>
-          {React.isValidElement(icon)
+          {isHovered && hoverIcon
+            ? React.isValidElement(hoverIcon)
+              ? React.cloneElement(hoverIcon as React.ReactElement<any>, {
+                  className: "text-lg w-8 h-8 text-white",
+                })
+              : hoverIcon
+            : React.isValidElement(icon)
             ? React.cloneElement(icon as React.ReactElement<any>, {
                 className: `text-lg w-8 h-8 ${
-                  isSelected ? "text-white" : "text-primary-darkGreen"
+                  isHovered ? "text-white" : "text-current"
                 }`,
               })
             : icon}
         </div>
         <div
-          className={"text-2xl font-sans font-normal text-brand-grayNatural600"}
+          className={`
+          text-2xl font-sans font-normal 
+          ${isHovered ? "text-white" : "text-brand-grayNatural600"}
+        `}
         >
           {number}
         </div>
@@ -58,16 +70,18 @@ const CareerCard: React.FC<CareerCardProps> = ({
       {/* Content section */}
       <div>
         <div
-          className={`text-xl font-normal font-sans  ${
-            isSelected ? "text-white" : "text-primary-darkGreen"
-          }`}
+          className={`
+          text-xl font-normal font-sans
+          ${isHovered ? "text-white" : "text-brand-grayNatural600"}
+        `}
         >
           {title}
         </div>
         <div
-          className={`text-sm font-normal font-sans ${
-            isSelected ? "text-white" : "text-brand-grayNatural500"
-          }`}
+          className={`
+          text-sm font-normal font-sans
+          ${isHovered ? "text-white" : "text-brand-grayNatural600"}
+        `}
         >
           {description}
         </div>

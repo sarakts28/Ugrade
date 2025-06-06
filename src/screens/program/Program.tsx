@@ -4,8 +4,6 @@ import FeatureHighlightSection from "./components/FeatureHighlightSection";
 import CourseOverviewSection from "./components/courseOverview/CourseOverviewSection";
 import MentorTestimonial from "./components/MentorTestimonial";
 import Faq from "./components/Faq";
-import ThankYouPopUp from "../../CommonComponents/popUp/ThankYouPopUp";
-import { useState } from "react";
 
 const Program = () => {
   const breadcrumbItems = [
@@ -16,10 +14,7 @@ const Program = () => {
       current: true,
     },
   ];
-  const [openPopUp, setOpenPopUp] = useState(false);
-  const handlePopUpClose = () => {
-    setOpenPopUp(false);
-  };
+
   return (
     <>
       <div className="w-full">
@@ -63,7 +58,7 @@ const Program = () => {
                     and stay ahead in today’s competitive landscape
                   </p>
                   <button
-                    onClick={() => setOpenPopUp(true)}
+                    onClick={() => {}}
                     className="border border-white rounded-[8px] bg-white inline-block cursor-pointer py-[12px] px-[20px] text-[rgba(0,60,63,1)] font-sans font-normal text-[16px] leading-[22px] max-w-[200px]"
                   >
                     Join the Waiting list
@@ -113,7 +108,6 @@ const Program = () => {
         {/* --------------------- */}
         <Faq />
       </div>
-      {openPopUp && <ThankYouPopUp handleClose={handlePopUpClose} />}
     </>
   );
 };

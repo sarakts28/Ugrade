@@ -42,6 +42,8 @@ const HomeScreen = () => {
       <CareerSection />
       {/* Marketing Section */}
       <MarketingSection />
+      {/* mentor section working*/}
+
       {/* Faq */}
       <Faq />
       {/* Passionate Section */}

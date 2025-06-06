@@ -57,6 +57,8 @@ import BrowserIcon from "../assets/icons/Browser.svg";
 import VideoIcon from "../assets/icons/Video.svg";
 import MentorDp from "../assets/MentorDP.png";
 import ProgramVideo from "../assets/videos/ProgramVideo.mp4";
+import BulletPointIcon from "../assets/icons/BulletPoint.svg";
+import Passionate from "../assets/passionate.svg";
 export const Images = {
   Logo: Logo,
   AboutUsBannerImage: AboutUsBannerImage,
@@ -116,5 +118,7 @@ export const Images = {
   VideoIcon: VideoIcon,
   MentorDp: MentorDp,
   ProgramVideo: ProgramVideo,
+  BulletPointIcon: BulletPointIcon,
+  Passionate: Passionate,
   // Add other images here as needed
 };

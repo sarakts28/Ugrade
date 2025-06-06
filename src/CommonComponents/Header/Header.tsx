@@ -77,6 +77,7 @@ const Header = () => {
                   <a
                     onClick={() => {
                       navigate("/programs");
+                      setIsLearnOpen(!isLearnOpen);
                     }}
                     className="block px-4 py-2 text-primary-NavyBlue hover:bg-gray-100 cursor-pointer"
                   >
@@ -107,9 +108,11 @@ const Header = () => {
         {/* CTA Button - Hidden on mobile */}
         <CustomButton
           label="Apply as Instructor/Mentor"
+          background="#113025"
           labelClassName="text-base font-sans"
           onClick={() => alert("Button Clicked!")}
-          className="hidden md:flex bg-white text-primary-NavyBlue px-8 py-2 rounded-md my-2"
+          className="text-white h-12 rounded-md border border-r-8 p-2"
+          borderWidth="1"
           startIcon={<RiGraduationCapLine />}
         />
 
