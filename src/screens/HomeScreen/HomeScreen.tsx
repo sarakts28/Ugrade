@@ -1,4 +1,3 @@
-import MediaCard from "../../CommonComponents/card/VideoTextCard";
 import { Images } from "../../constants/images";
 import RunningRow from "./Components/AminationRow";
 import CareerSection from "./Components/CareerSection";
