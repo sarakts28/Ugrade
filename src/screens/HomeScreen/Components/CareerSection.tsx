@@ -1,6 +1,5 @@
 import { Images } from "../../../constants/images";
 import CareerCard from "./CareerCard";
-import { useState } from "react";
 
 const CareerSection = () => {
   const cardData = [
@@ -9,9 +8,9 @@ const CareerSection = () => {
       title: "Real-World Skill Tracks",
       description:
         "Learn what the industry actually uses – no fluff, just the skills that matter",
-      isSelected: false,
+
       icon: Images.Globe,
-      selectedIcon: Images.GlobeWhite,
+      hoverIcon: Images.GlobeWhite,
       className: "w-[318px] h-[350px]",
     },
     {
@@ -19,9 +18,9 @@ const CareerSection = () => {
       title: "Mentors who have been there",
       description:
         "Get certified in the skills that employers are looking forGet guidance from professionals who have done the work and know what it takes",
-      isSelected: true,
+
       icon: Images.VideoCall,
-      selectedIcon: Images.VideoCallWhite,
+      hoverIcon: Images.VideoCallWhite,
       className: "w-[318px] lg:w-[518px] h-[350px]",
     },
     {
@@ -29,9 +28,9 @@ const CareerSection = () => {
       title: "Hands-on project-based learning",
       description:
         "Build real projects & solve real problems – learning by doing, not just watching",
-      isSelected: false,
+
       icon: Images.PensilBook,
-      selectedIcon: Images.PensilBookWhite,
+      hoverIcon: Images.PensilBookWhite,
       className: "w-[318px] h-[350px]",
     },
     {
@@ -39,9 +38,9 @@ const CareerSection = () => {
       title: "Career Ready, Outcome-Driven",
       description:
         "Everything you learn is geared toward one goal: landing the job or role you deserve",
-      isSelected: false,
+
       icon: Images.Target,
-      selectedIcon: Images.TargetWhite,
+      hoverIcon: Images.TargetWhite,
       className: "w-[318px] lg:w-[518px] h-[350px]",
     },
     {
@@ -49,23 +48,12 @@ const CareerSection = () => {
       title: "Community that lifts you up",
       description:
         "You’re never alone — ask questions, share wins, get support. We're in this together",
-      isSelected: false,
       icon: Images.Users,
-      selectedIcon: Images.UsersWhite,
+      hoverIcon: Images.UsersWhite,
       className: "w-[318px] lg:w-[518px] h-[350px]",
     },
   ];
-  const [cardArray, setCardArray] = useState(cardData);
 
-  const handleCardClick = (id: string) => {
-    setCardArray((prevCards) =>
-      prevCards.map((card) =>
-        card.id === id
-          ? { ...card, isSelected: !card.isSelected }
-          : { ...card, isSelected: false }
-      )
-    );
-  };
   return (
     <div className="flex flex-col items-center justify-center gap-8 w-full h-full p-4 mt-8 ">
       <div className="flex flex-col items-center justify-center gap-2 w-full">
@@ -78,21 +66,14 @@ const CareerSection = () => {
         </p>
       </div>
       <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-4 w-full items-center sm:justify-center">
-        {cardArray.map((item) => (
+        {cardData.map((item) => (
           <CareerCard
             key={item.id}
             title={item.title}
             description={item.description}
-            isSelected={item.isSelected}
             number={item.id}
-            onClick={() => handleCardClick(item.id)}
-            icon={
-              item.isSelected ? (
-                <img src={item.selectedIcon} />
-              ) : (
-                <img src={item.icon} />
-              )
-            }
+            icon={<img src={item.icon} />}
+            hoverIcon={<img src={item.hoverIcon} />}
             className={item.className}
           />
         ))}

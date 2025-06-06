@@ -1,5 +1,5 @@
 import HomeScreen from "./HomeScreen/HomeScreen";
 import AboutScreen from "./AboutScreen/AboutUs";
 import ConatctScreen from "./ContactScreen/ConatctUs";
-
-export { HomeScreen, AboutScreen, ConatctScreen };
+import Program from "./program/Program";
+export { HomeScreen, AboutScreen, ConatctScreen, Program };

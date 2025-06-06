@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { Images } from "../../../constants/images";
 import { ProfileCard } from "../../../CommonComponents";
-import ScrollableRow from "../../../CommonComponents/ScrollRow/ScrollRow";
+import {
+  MdOutlineArrowForwardIos,
+  MdOutlineArrowBackIos,
+} from "react-icons/md";
 
 const OurInstructors = ({ heading }: { heading: string }) => {
   const teamData = [
@@ -86,49 +89,43 @@ const OurInstructors = ({ heading }: { heading: string }) => {
       position: "Customer Success",
     },
   ];
-  const [visibleCards, setVisibleCards] = useState(teamData.length);
+
+  const [cardsPerRow, setCardsPerRow] = useState(4); // Default to 4 cards per row (for 8 total)
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setIsMobile(window.innerWidth < 768);
-  //     if (window.innerWidth >= 1024) {
-  //       setVisibleCards(8); // Show 8 on large screens
-  //     } else if (window.innerWidth >= 768) {
-  //       setVisibleCards(3); // Show 4 on medium screens
-  //     } else {
-  //       setVisibleCards(1); // Show 1 on mobile
-  //     }
-  //   };
+  useEffect(() => {
+    const calculateCards = () => {
+      if (window.innerWidth >= 1024) {
+        setCardsPerRow(4); // 4 cards per row × 2 rows = 8 cards total
+      } else if (window.innerWidth >= 550) {
+        setCardsPerRow(3); // 3 cards per row × 2 rows = 6 cards total
+      } else {
+        setCardsPerRow(1); // 1 card per row (single column)
+      }
+      setCurrentIndex(0); // Reset to first group when screen size changes
+    };
 
-  //   handleResize();
-  //   window.addEventListener("resize", handleResize);
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
+    calculateCards();
+    window.addEventListener("resize", calculateCards);
+    return () => window.removeEventListener("resize", calculateCards);
+  }, []);
 
-  // const handleShowMore = () => {
-  //   setVisibleCards((prev) => prev + 4); // Show 4 more cards
-  // };
+  const totalGroups = Math.ceil(teamData.length / cardsPerRow / 2);
+  const visibleCards = teamData.slice(
+    currentIndex * cardsPerRow * 2,
+    (currentIndex + 1) * cardsPerRow * 2
+  );
 
-  // const handleShowLess = () => {
-  //   // Return to initial number based on screen size
-  //   if (window.innerWidth >= 1024) {
-  //     setVisibleCards(8);
-  //   } else if (window.innerWidth >= 768) {
-  //     setVisibleCards(3);
-  //   } else {
-  //     setVisibleCards(1);
-  //   }
-  // };
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % totalGroups);
+  };
 
-  // const handleNext = () => {
-  //   setCurrentIndex((prev) => (prev + 1) % teamData.length);
-  // };
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + totalGroups) % totalGroups);
+  };
 
-  // const handlePrev = () => {
-  //   setCurrentIndex((prev) => (prev - 1 + teamData.length) % teamData.length);
-  // };
+  const canShowNext = totalGroups > 1 && currentIndex < totalGroups - 1;
+  const canShowPrev = totalGroups > 1 && currentIndex > 0;
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -136,98 +133,78 @@ const OurInstructors = ({ heading }: { heading: string }) => {
         {heading}
       </h2>
 
-      {/* Desktop/Tablet Grid View */}
-      {/* <div className="hidden md:block">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {teamData.slice(0, visibleCards).map((member, index) => (
-            <ProfileCard
-              key={index}
-              className=""
-              name={member.name}
-              imageURL={member.image}
-              position={member.position}
-              description={member.description}
-              profileLink={member.LinkedInProfileLink}
-            />
-          ))}
-        </div>
-
-        <div className="flex justify-center mt-8 gap-4">
-          {visibleCards < teamData.length && (
+      <div className="relative">
+        {/* Navigation Arrows */}
+        {totalGroups > 1 && (
+          <>
             <button
-              onClick={handleShowMore}
-              className="px-6 py-2 bg-primary-darkGreen text-white rounded-lg transition"
-            >
-              Show More
-            </button>
-          )}
-          {visibleCards >
-            (isMobile ? 1 : window.innerWidth >= 1024 ? 8 : 4) && (
-            <button
-              onClick={handleShowLess}
-              className="px-6 py-2 bg-primary-NavyBlue rounded-lg text-white hover:bg-gray-300 transition"
-            >
-              Show Less
-            </button>
-          )}
-        </div>
-      </div> */}
-
-      {/* Mobile Carousel View */}
-      {/* <div className="md:hidden relative">
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <ProfileCard
-            key={currentIndex}
-            className=""
-            name={teamData[currentIndex].name}
-            imageURL={teamData[currentIndex].image}
-            position={teamData[currentIndex].position}
-            description={teamData[currentIndex].description}
-            profileLink={teamData[currentIndex].LinkedInProfileLink}
-          />
-        </div>
-
-        <div className="flex justify-between mt-4">
-          <button
-            onClick={handlePrev}
-            className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition"
-          >
-            Previous
-          </button>
-          <button
-            onClick={handleNext}
-            className="px-4 py-2 bg-primary-NavyBlue text-white rounded-lg transition"
-          >
-            Next
-          </button>
-        </div>
-
-        <div className="flex justify-center mt-4">
-          {teamData.map((_, index) => (
-            <div
-              key={index}
-              className={`w-2 h-2 mx-1 rounded-full ${
-                currentIndex === index ? "bg-primary-NavyBlue" : "bg-gray-300"
+              onClick={handlePrev}
+              disabled={!canShowPrev}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition ${
+                !canShowPrev ? "opacity-50 cursor-not-allowed" : ""
               }`}
-            />
-          ))}
-        </div>
-      </div> */}
+              aria-label="Previous"
+            >
+              <MdOutlineArrowBackIos fontSize={24} />
+            </button>
+            <button
+              onClick={handleNext}
+              disabled={!canShowNext}
+              className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md hover:bg-gray-100 transition ${
+                !canShowNext ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              aria-label="Next"
+            >
+              <MdOutlineArrowForwardIos fontSize={24} />
+            </button>
+          </>
+        )}
 
-      {/* other way */}
-      <ScrollableRow gap="lg" className="p-4 bg-gray-50">
-        {teamData.slice(0, visibleCards).map((member, index) => (
-          <ProfileCard
-            key={index}
-            className="w-[200px] md:w-[250px] lg:w-[300px]"
-            name={member.name}
-            imageURL={member.image}
-            position={member.position}
-            description={member.description}
-            profileLink={member.LinkedInProfileLink}
-          />
-        ))}
-      </ScrollableRow>
+        {/* Cards Container */}
+        <div className="space-y-4">
+          {/* First Row */}
+          <div className="flex space-x-4">
+            {visibleCards.slice(0, cardsPerRow).map((member, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0"
+                style={{ width: `${100 / cardsPerRow}%` }}
+              >
+                <ProfileCard
+                  name={member.name}
+                  imageURL={member.image}
+                  position={member.position}
+                  description={member.description}
+                  profileLink={member.LinkedInProfileLink}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Second Row (only shown when cardsPerRow > 1) */}
+          {cardsPerRow > 1 && (
+            <div className="flex space-x-4">
+              {visibleCards
+                .slice(cardsPerRow, cardsPerRow * 2)
+                .map((member, index) => (
+                  <div
+                    key={index + cardsPerRow}
+                    className="flex-shrink-0"
+                    style={{ width: `${100 / cardsPerRow}%` }}
+                  >
+                    <ProfileCard
+                      name={member.name}
+                      imageURL={member.image}
+                      position={member.position}
+                      description={member.description}
+                      profileLink={member.LinkedInProfileLink}
+                    />
+                  </div>
+                ))}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

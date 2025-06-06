@@ -1,12 +1,15 @@
+import MediaCard from "../../CommonComponents/card/VideoTextCard";
 import { Images } from "../../constants/images";
 import RunningRow from "./Components/AminationRow";
 import CareerSection from "./Components/CareerSection";
+import Faq from "./Components/Faq";
 import HomeBanner from "./Components/HomeBanner";
 import MarketingSection from "./Components/MarketingSection";
+import PassionateSection from "./Components/PassionateSection";
 
 const HomeScreen = () => {
   return (
-    <div className="w-full flex flex-col items-center gap-4">
+    <div className="w-full flex flex-col gap-4">
       {/* home Banner */}
       <HomeBanner />
       {/* partnersection */}
@@ -40,6 +43,12 @@ const HomeScreen = () => {
       <CareerSection />
       {/* Marketing Section */}
       <MarketingSection />
+      {/* mentor section working*/}
+
+      {/* Faq */}
+      <Faq />
+      {/* Passionate Section */}
+      <PassionateSection />
     </div>
   );
 };

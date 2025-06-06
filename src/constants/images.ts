@@ -38,7 +38,27 @@ import companyImage4 from "../assets/company name/whoop.png";
 import companyImage5 from "../assets/LondonReal.svg";
 import Program1 from "../assets/program1.svg";
 import Program2 from "../assets/program2.svg";
-
+import FictionalCompanyLogo1 from "../assets/FictionalCompanylogo1.png";
+import FictionalCompanyLogo2 from "../assets/FictionalCompanylogo2.png";
+import FictionalCompanyLogo3 from "../assets/FictionalCompanylogo3.png";
+import FictionalCompanyLogo4 from "../assets/FictionalCompanylogo4.png";
+import FictionalCompanyLogo5 from "../assets/FictionalCompanylogo5.png";
+import certificate from "../assets/certificate.jpg";
+import TrustedCompanyLogo1 from "../assets/trustedCompanyLogo/image1.png";
+import TrustedCompanyLogo2 from "../assets/trustedCompanyLogo/image2.png";
+import TrustedCompanyLogo3 from "../assets/trustedCompanyLogo/image3.png";
+import TrustedCompanyLogo4 from "../assets/trustedCompanyLogo/image4.png";
+import TrustedCompanyLogo5 from "../assets/trustedCompanyLogo/image5.png";
+import TrustedCompanyLogo6 from "../assets/trustedCompanyLogo/image6.png";
+import TrustedCompanyLogo7 from "../assets/trustedCompanyLogo/image7.png";
+import AssigmentIcon from "../assets/icons/Assignment.svg";
+import BookHelpIcon from "../assets/icons/BookHelp.svg";
+import BrowserIcon from "../assets/icons/Browser.svg";
+import VideoIcon from "../assets/icons/Video.svg";
+import MentorDp from "../assets/MentorDP.png";
+import ProgramVideo from "../assets/videos/ProgramVideo.mp4";
+import BulletPointIcon from "../assets/icons/BulletPoint.svg";
+import Passionate from "../assets/passionate.svg";
 export const Images = {
   Logo: Logo,
   AboutUsBannerImage: AboutUsBannerImage,
@@ -79,5 +99,26 @@ export const Images = {
   companyImage5: companyImage5,
   Program1: Program1,
   Program2: Program2,
+  certificate: certificate,
+  FictionalCompanyLogo1: FictionalCompanyLogo1,
+  FictionalCompanyLogo2: FictionalCompanyLogo2,
+  FictionalCompanyLogo3: FictionalCompanyLogo3,
+  FictionalCompanyLogo4: FictionalCompanyLogo4,
+  FictionalCompanyLogo5: FictionalCompanyLogo5,
+  TrustedCompanyLogo1: TrustedCompanyLogo1,
+  TrustedCompanyLogo2: TrustedCompanyLogo2,
+  TrustedCompanyLogo3: TrustedCompanyLogo3,
+  TrustedCompanyLogo4: TrustedCompanyLogo4,
+  TrustedCompanyLogo5: TrustedCompanyLogo5,
+  TrustedCompanyLogo6: TrustedCompanyLogo6,
+  TrustedCompanyLogo7: TrustedCompanyLogo7,
+  AssigmentIcon: AssigmentIcon,
+  BookHelpIcon: BookHelpIcon,
+  BrowserIcon: BrowserIcon,
+  VideoIcon: VideoIcon,
+  MentorDp: MentorDp,
+  ProgramVideo: ProgramVideo,
+  BulletPointIcon: BulletPointIcon,
+  Passionate: Passionate,
   // Add other images here as needed
 };
