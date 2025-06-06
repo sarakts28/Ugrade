@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Form from "../Form";
 import KeyoutConmes from "./components/KeyoutConmes";
 import TechToolsList from "./components/TechToolsList";
@@ -8,18 +7,6 @@ import Instructors from "./components/Instructors";
 import CertificateInfo from "./components/CertificateInfo";
 
 const CourseOverviewSection = () => {
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
-
-  const onSubmit = () => {};
-
-  const onChange = (field: string, value: string) => {
-    setData((prevData) => ({ ...prevData, [field]: value }));
-  };
-
   return (
     <div className="w-full pb-[80px]">
       <div className=" container px-4 mx-auto">
@@ -40,12 +27,7 @@ const CourseOverviewSection = () => {
           </div>
           {/* ---------- */}
           <div className="w-full lg:w-[30%] shrink-0">
-            <Form
-              data={data}
-              onChange={onChange}
-              onSubmit={onSubmit}
-              className="bg-[rgba(243,245,247,1)]"
-            />
+            <Form className="bg-[rgba(243,245,247,1)]" />
           </div>
         </div>
       </div>
