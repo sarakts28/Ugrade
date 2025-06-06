@@ -80,7 +80,7 @@ export default function DraggableOvals() {
     );
   };
 
-  const handleMouseUp = (e: React.MouseEvent) => {
+  const handleMouseUp = () => {
     if (!draggedItem || !containerRef.current) return;
 
     const containerRect = containerRef.current.getBoundingClientRect();
